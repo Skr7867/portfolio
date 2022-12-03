@@ -379,7 +379,12 @@
         </div>
         <h3 class="contact-title pad-15" >SEND ME AN EMAIL</h3>
         <h4 class="contact-sub-title pad-15">I'M VERY RESPONSIVE TO MESSAGES</h4>
+        <div id="res">
+            <p id="res-txt"></p>
+            <i class=" fa fa-times" id="cross-msg"></i>
+        </div>
         <div class="contact-right ">
+            
             <form name="submit-to-google-sheet">
                 <input type="text" name="Name" placeholder="Your Name" required>
                 <input type="email" name="Email" placeholder="Your Email" required>
@@ -420,9 +425,22 @@
         form.addEventListener('submit', e => {
           e.preventDefault()
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
+            .then((response)=>{ 
+                var res = document.querySelector("#res-txt");
+                var resbox = document.querySelector("#res");
+
+                
+                res.innerHTML = "Message send Successfully";
+                resbox.style.display = "flex";
+                resbox.style.justifyContent = "space-between";
+        })
             .catch(error => console.error('Error!', error.message))
         })
+        var msgCross = document.querySelector("#cross-msg");
+        msgCross.addEventListener("click", ()=>{
+            var resbox = document.querySelector("#res");
+                resbox.style.display = "none";
+        });
       </script>
 </body>
 </html>
